@@ -32,7 +32,6 @@ export default NextAuth({
     jwt: {
         secret:'thisisarandomjwtsecretline'
     },
-    secret: process.env.SECRET,
-    
-    
+    secret:'thisisarandomsecretline'
+       
 })
