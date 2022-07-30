@@ -1,0 +1,44 @@
+
+
+.scroll_hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll_hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.movingdown{
+  transition: all .3s ease;
+  animation: slidefromtop .5s 0s ease  both ;
+  scroll-behavior: smooth;
+  
+}
+
+h1.linetext{
+  display: flex;
+  flex-direction: row;
+}
+h1.linetext::before, h1.linetext::after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid gray;
+  margin: auto;
+}
+h1.linetext::before{
+  margin-right: 10px
+}
+h1.linetext::after{
+  margin-left: 10px
+}
+
+@keyframes slidefromtop {
+  0%{
+    transform: translateY(-100%);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+

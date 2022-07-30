@@ -1,82 +1,81 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Navbar from '../components/Navbar';
+import Banner from '../components/Banner';
+import SmallCard from '../components/SmallCard';
+import BigCard from '../components/BigCard';
+import LargeCard from '../components/LargeCard';
+import Footer from '../components/Footer';
+import { exploredata } from '../exploredata';
+import { destinations } from '../destinations';
+
 
 export default function Home() {
+  
+ 
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div >
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Airbnb-Home</title>
+        <link rel="icon" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <Navbar />
+      <Banner />
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
+      {/* now comes the main section and under this we we will create other sections  */}
 
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+      <main className=" px-8 sm:px-16 ">
+        <section className="pt-16">
+          <h1 className="text-3xl font-poppins font-semibold tracking-wide text-gray-800 ">Explore nearby</h1>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+          <div className=" mt-6 grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 overflow-x-auto grid-flow-col sm:grid-flow-row grid-rows-2 scroll_hidden">
+            {exploredata?.map((item, index) => (
+              <SmallCard img={item.img}
+                location={item.location}
+                distance={item.distance}
+                key={index}
+                
+              />
+            ))}
+          </div>
+        </section>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <section>
+          <h1 className="text-3xl font-poppins font-semibold tracking-wide text-gray-800 mt-14">Destinations travellers love</h1>
+          <div className="mt-6 flex overflow-scroll scroll_hidden sm:justify-between">
+            {destinations?.map((item, index) => (
+              <BigCard img={item.img}
+                title={item.title}
+                key={index}
+              />
+            ))}
+
+          </div>
+        </section>
+
+        <LargeCard
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Join for thrilling experiences around the globe"
+          buttonText="Get Inspired"
+          
+        />
+
+
       </main>
 
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
+
+// here use the static rendering from the server , export an async function that will make the request 
+
+
+
+
