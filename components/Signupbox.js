@@ -26,7 +26,7 @@ const Signupbox = ({ toggler }) => {
                         <h2 className="font-poppins font-medium text-lg md:text-2xl mb-5">Welcome to Airbnb</h2>
                         <div className="flex items-center mt-5 border border-gray-500 p-3 rounded-xl hover:border-black" onClick={gotoSignup}>
                             <Image
-                                src="/Images/Search.png"
+                                src="/Images/search.png"
                                 height="21"
                                 width="21"
                                 objectFit="cover"

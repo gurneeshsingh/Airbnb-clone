@@ -29,7 +29,7 @@ const Loginbox = ({ toggler }) => {
 
                         <div className="flex items-center mt-5 border border-gray-500 p-3 rounded-xl hover:border-black" onClick={gotoLogin}>
                             <Image
-                                src="/Images/Search.png"
+                                src="/Images/search.png"
                                 height="21"
                                 width="21"
                                 objectFit="cover"
