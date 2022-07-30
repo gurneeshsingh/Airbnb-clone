@@ -8,11 +8,17 @@ import Image from 'next/image';
 import { StarIcon } from '@heroicons/react/outline';
 import { BadgeCheckIcon } from '@heroicons/react/outline';
 import Footer from '../components/Footer';
+import Home from './index';
+
 
 const profile = () => {
 
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const router = useRouter();
+
+    if (!session || status === 'unauthenticated') {
+        return <Home/>
+    }
 
 
     return (
