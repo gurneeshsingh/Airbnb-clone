@@ -6,6 +6,7 @@ import { ChevronLeftIcon } from "@heroicons/react/outline"
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 
 
@@ -16,6 +17,10 @@ const confirm = () => {
     const { data: session, status } = useSession();
     const [bookingMessage, setbookingMessage] = useState(false);
 
+
+    function gotoLogin() {
+        signIn('google')
+    };
 
 
     useEffect(() => {
@@ -92,23 +97,17 @@ const confirm = () => {
                         </div>
 
                         {/* login or signup  */}
-                        {(!session || status === 'unauthenticated') ? <div className='border-t border-gray-300 py-5 flex flex-col mt-6'>
-                            <h3 className='font-poppins font-medium text-gray-800 text-sm md:text-xl my-3 '>Login or sign up to book</h3>
-                            <form className=' rounded-lg flex flex-col mt-3'>
-                                <input type="email" name='email' placeholder='Email' autoComplete='off' required className='border border-gray-400 border-b-0 p-4 rounded-lg rounded-b-none outline-none bg-transparent' />
-                                <input type="password" name='password' placeholder='Password' autoComplete='off' required className='border border-gray-400 p-4 rounded-lg rounded-t-none outline-none bg-transparent' />
-                                <button className='my-4 rounded-lg py-3 flex justify-center items-center font-poppins text-sm md:text-lg font-medium bg-gradient-to-tr from-pink-400 via-red-400 to-yellow-400 text-white bg-opacity-60'>Continue</button>
-                            </form>
-                            <h1 className="linetext my-2 font-poppins text-xs text-gray-800">or</h1>
+                        {(!session || status === 'unauthenticated') ? <div className='border-t border-gray-300 py-5 flex flex-col mt-8'>
+                            <h3 className='font-poppins font-medium text-gray-800 text-sm md:text-xl my-3 '>Login first to book</h3>
 
-                            <div className="flex items-center mt-5 border border-gray-500 p-3 rounded-xl hover:border-black">
+                            <div className="flex items-center mt-5 border border-gray-500 p-3 rounded-xl hover:border-black" onClick={gotoLogin}>
                                 <Image
-                                    src="/Images/Search.png"
+                                    src="/Images/search.png"
                                     height="21"
                                     width="21"
                                     objectFit="cover"
                                 />
-                                <p className="font-poppins text-gray-900 text-sm flex-grow text-center tracking-wide cursor-pointer ">Signup with Google</p>
+                                <p className="font-poppins text-gray-900 text-sm flex-grow text-center tracking-wide cursor-pointer ">Login with Google</p>
                             </div>
                         </div> :
                             <>
