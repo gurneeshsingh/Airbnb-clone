@@ -56,12 +56,13 @@ const profile = () => {
 export default profile
 
 export async function getServerSideProps(context) {
-    const session = getSession(context)
+    const session = await getSession(context)
 
     if (!session) {
         return {
             redirect: {
-                destination: '/'
+                destination: '/',
+                permanent:false
             }
         }
     }
