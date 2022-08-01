@@ -9,7 +9,7 @@ const Signupbox = ({ toggler }) => {
 
     function gotoSignup() {
         // router.push('/api/auth/signin')
-        signIn()
+        signIn("google")
     };
 
     return (

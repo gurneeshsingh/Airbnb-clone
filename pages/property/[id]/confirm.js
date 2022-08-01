@@ -19,7 +19,7 @@ const confirm = () => {
 
 
     function gotoLogin() {
-        signIn()
+        signIn('google')
     };
 
 

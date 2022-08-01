@@ -10,7 +10,7 @@ const Loginbox = ({ toggler }) => {
 
 
     function gotoLogin() {
-        signIn()
+        signIn("google")
     };
 
     return (
