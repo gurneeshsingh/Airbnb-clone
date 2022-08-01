@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import NavbarMinimal from '../components/NavbarMinimal';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
@@ -8,17 +8,13 @@ import Image from 'next/image';
 import { StarIcon } from '@heroicons/react/outline';
 import { BadgeCheckIcon } from '@heroicons/react/outline';
 import Footer from '../components/Footer';
-import Home from './index';
+
 
 
 const profile = () => {
 
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const router = useRouter();
-
-    if (!session || status === 'unauthenticated') {
-        return <Home/>
-    }
 
 
     return (
@@ -36,7 +32,7 @@ const profile = () => {
                     <div className='w-full flex items-center mt-3'>
                         <ChevronLeftIcon className="md:h-10 md:w-10 md:p-2 h-8 w-8 p-1.5 mx-3 my-3 cursor-pointer transition-all hover:bg-gray-100 rounded-full " onClick={() => router.back()} />
                         <p className='font-poppins  mr-auto font-semibold text-gray-700 text-base md:text-xl text-center '>Profile</p>
-                        <p className='font-poppins text-red-500 capitalize mr-8  text-base md:text-xl font-medium'>{session?.user?.name }</p>
+                        <p className='font-poppins text-red-500 capitalize mr-8  text-base md:text-xl font-medium'>{session?.user?.name}</p>
                     </div>
                     {session && <div className='w-[90%] mx-auto border-t my-2 pt-8 flex justify-center items-center'>
                         <Image src={session?.user?.image} alt='user' objectFit='cover' width={130} height={130} className='rounded-full' />
@@ -51,10 +47,25 @@ const profile = () => {
                     </div>
                 </aside>
             </main>
-            <Footer/>
+            <Footer />
 
         </div>
     )
 }
 
 export default profile
+
+export async function getServerSideProps(context) {
+    const session = getSession(context)
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/'
+            }
+        }
+    }
+    return {
+        props: { session }
+    }
+}
